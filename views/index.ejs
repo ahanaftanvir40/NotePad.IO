@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Note.io</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+    <body>
+        <div class="main w-full min-h-screen bg-zinc-900">
+
+            <nav>
+                <div class="grid grid-cols-12">
+                    <div class="h-20 bg-zinc-900 col-span-6">
+                        <h1
+                            class="text-teal-200 text-4xl text-end py-10">NotePad.IO</h1>
+                    </div>
+                    <div class="h-20 bg-zinc-900 col-span-6 py-8 pl-2">
+                        <img class="h-12" src="/images/notepad.png"
+                            alt>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="form p-10 text-white my-14">
+                <form action="/create" method="post">
+                    <input
+                        class="block w-full rounded-md px-5 py-2 outline-none bg-zinc-600"
+                        type="text"
+                        placeholder="Title goes here" name="title">
+                    <textarea
+                        class="block w-full mt-3 px-5 py-2 rounded-md outline-none bg-zinc-600 resize-none"
+                        placeholder="Write your Note here"
+                        name="details"></textarea>
+                    <input
+                        class="mt-4 cursor-pointer bg-blue-600 px-5 py-2 rounded-md"
+                        type="submit"
+                        value="Create Note">
+                </form>
+            </div>
+
+            <div class="tasks flex gap-3 flex-wrap p-10">
+
+                <% if (files.length >0) {%>
+                <% files.forEach(function(val){%>
+                <div class="tasks min-w-72  px-3 py-4 rounded-md bg-zinc-600">
+                    <h1 class="text-white text-3xl tracking-tighter"><%= val
+                        %></h1>
+
+                    <a class="text-blue-500 inline-block mt-3"
+                        href='/readmore/<%= val %>'>Read
+                        More</a>
+                </div>
+
+                <%}) %>
+                <%} else{%>
+                <h3 class="text-zinc-600">No notes yet</h3>
+                <%} %>
+
+            </div>
+
+        </div>
+
+    </body>
+</html>
