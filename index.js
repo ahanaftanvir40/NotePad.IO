@@ -23,6 +23,15 @@ app.get(`/readmore/:filename`, function (req, res) {
 
 })
 
+app.get('/edit/:filename', function (req, res) {
+    res.render('edit', { filename: req.params.filename })
+})
+app.post('/edit', function (req, res) {
+    fs.rename(`./files/${req.body.previous}`, `./files/${req.body.new.split(' ').join('')}`, function (err) {
+        res.redirect('/')
+    })
+})
+
 app.post('/create', function (req, res) {
     fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, function (err) {
         res.redirect('/')
